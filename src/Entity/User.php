@@ -34,6 +34,11 @@ class User
      */
     private $lastName;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Client::class, inversedBy="users")
+     */
+    private $client;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -71,6 +76,18 @@ class User
     public function setLastName(string $lastName): self
     {
         $this->lastName = $lastName;
+
+        return $this;
+    }
+
+    public function getClient(): ?Client
+    {
+        return $this->client;
+    }
+
+    public function setClient(?Client $client): self
+    {
+        $this->client = $client;
 
         return $this;
     }
