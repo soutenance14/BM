@@ -27,7 +27,7 @@ class AppFixtures extends Fixture
         $client = new Client();
         $client->setEmail("a@gmail.com")
         ->setPassword($this->encoder->encodePassword($client, "password"))
-        ->setRoles(['ROLE_SUBSCRIBER']);
+        ->setRoles(['ROLE_USER']);
         $manager->persist($client);
 
         $user = new User();
