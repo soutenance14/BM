@@ -7,7 +7,25 @@ use App\Repository\PhoneRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ * collectionOperations={
+ *         "get","post" ={
+ *              "access_control"="is_granted('ROLE_USER')"
+ *          },
+ *      },
+ *     itemOperations={
+ *         "get",
+ *         "post",
+ *         "put",
+ *         "delete"={
+ *              "access_control"="is_granted('ROLE_USER')"
+ *          }
+ *     },
+ *     attributes={
+ *          "pagination_items_per_page"=10,
+ *           "access_control"="is_granted('ROLE_USER')"
+ *     },
+ * )
  * @ORM\Entity(repositoryClass=PhoneRepository::class)
  */
 class Phone
