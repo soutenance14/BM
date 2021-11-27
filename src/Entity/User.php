@@ -7,7 +7,14 @@ use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ *     collectionOperations={
+ *         "get",
+ *         "post"={
+ *              "access_control"="is_granted('ROLE_USER')"
+ *          }
+ *      }
+ * )
  * @ORM\Entity(repositoryClass=UserRepository::class)
  */
 class User

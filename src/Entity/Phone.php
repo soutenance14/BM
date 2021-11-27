@@ -7,7 +7,9 @@ use App\Repository\PhoneRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ * collectionOperations={}
+ * )
  * @ORM\Entity(repositoryClass=PhoneRepository::class)
  */
 class Phone
