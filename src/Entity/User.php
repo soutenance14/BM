@@ -11,18 +11,22 @@ use Doctrine\ORM\Mapping as ORM;
  *     collectionOperations={
  *         "get",
  *         "post"={
- *              "access_control"="is_granted('ROLE_USER')"
+ *              "access_control"="is_granted('ROLE_USER')",
+ *              "object.setClient(user)"
  *          }
  *      },
  *      itemOperations={
  *      "get",
  *      "put",
  *      "delete"={
- *              "access_control"="is_granted('ROLE_USER')"
+ *              "access_control"="is_granted('ROLE_USER') and object.getClient() == user"
  *          }
  *      }
  * )
  * @ORM\Entity(repositoryClass=UserRepository::class)
+ * @ORM\EntityListeners({
+ *     "App\EntityListener\ClientUserEntityListener"
+ * })
  */
 class User
 {
