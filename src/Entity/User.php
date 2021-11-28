@@ -8,18 +8,22 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ApiResource(
+ *     attributes= {"security"="is_granted('ROLE_USER')"},
  *     collectionOperations={
- *         "get",
- *         "post"={
- *              "access_control"="is_granted('ROLE_USER')",
- *              "object.setClient(user)"
- *          }
+ *         "get","post"
  *      },
  *      itemOperations={
- *      "get",
- *      "put",
+ *      "get"={
+ *              "security"="is_granted('ROLE_USER') and object.getClient() == user or is_granted('ROLE_ADMIN')",
+ *              "security_message"="This user is created by another client and you are not admin."
+ *          },
+ *      "put"={
+ *              "security"="is_granted('ROLE_USER') and object.getClient() == user or is_granted('ROLE_ADMIN')",
+ *              "security_message"="This user is created by another client and you are not admin."
+ *          },
  *      "delete"={
- *              "access_control"="is_granted('ROLE_USER') and object.getClient() == user"
+ *              "security"="is_granted('ROLE_USER') and object.getClient() == user or is_granted('ROLE_ADMIN')",
+ *              "security_message"="This user is created by another client and you are not admin."
  *          }
  *      }
  * )
