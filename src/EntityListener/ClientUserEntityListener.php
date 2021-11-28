@@ -17,7 +17,12 @@ class ClientUserEntityListener
 
   public function prePersist(User $user)
   {
-    $user->setClient($this->tokenStorage->getToken()->getUser());
+    // for data fixtures, tokenStorage->getToken is null
+    // you can comment this after execute all fixtures
+    if(null !== $this->tokenStorage->getToken() && null !== $this->tokenStorage->getToken()->getUser())
+    {
+      $user->setClient($this->tokenStorage->getToken()->getUser());
+    }
   }
 
 }
