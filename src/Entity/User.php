@@ -7,8 +7,30 @@ use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ *     attributes= {"security"="is_granted('ROLE_USER')"},
+ *     collectionOperations={
+ *         "get","post"
+ *      },
+ *      itemOperations={
+ *      "get"={
+ *              "security"="is_granted('ROLE_USER') and object.getClient() == user or is_granted('ROLE_ADMIN')",
+ *              "security_message"="This user is created by another client and you are not admin."
+ *          },
+ *      "put"={
+ *              "security"="is_granted('ROLE_USER') and object.getClient() == user or is_granted('ROLE_ADMIN')",
+ *              "security_message"="This user is created by another client and you are not admin."
+ *          },
+ *      "delete"={
+ *              "security"="is_granted('ROLE_USER') and object.getClient() == user or is_granted('ROLE_ADMIN')",
+ *              "security_message"="This user is created by another client and you are not admin."
+ *          }
+ *      }
+ * )
  * @ORM\Entity(repositoryClass=UserRepository::class)
+ * @ORM\EntityListeners({
+ *     "App\EntityListener\ClientUserEntityListener"
+ * })
  */
 class User
 {
