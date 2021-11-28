@@ -24,7 +24,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *      },
  *      itemOperations={
  *      "get"={
- *           "normalization_context"={"groups"={"show_detail"}},
+ *           "normalization_context"={"groups"={"show_simple","show_detail"}},
  *           "security"="is_granted('ROLE_USER') and object == user or is_granted('ROLE_ADMIN')",
  *            "security_message"="Only the account owner or an admin can access to this."
  *          }
