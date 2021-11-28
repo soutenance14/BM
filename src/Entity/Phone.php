@@ -8,7 +8,23 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ApiResource(
- * collectionOperations={}
+ *      attributes= {"security"="is_granted('ROLE_USER')"},
+ *      collectionOperations={"get",
+ *      "post"={
+ *              "security"="is_granted('ROLE_ADMIN')",
+ *              "security_message"="Only admin account can create admin."
+ *              }
+ *          },
+ *      itemOperations={"get",
+ *      "delete"={
+ *              "security"="is_granted('ROLE_ADMIN')",
+ *              "security_message"="Only admin account can delete admin."
+ *              },
+ *      "put"={
+ *              "security"="is_granted('ROLE_ADMIN')",
+ *              "security_message"="Only admin account can edit admin."
+ *              }
+ *          }
  * )
  * @ORM\Entity(repositoryClass=PhoneRepository::class)
  */
