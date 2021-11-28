@@ -9,6 +9,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ApiResource(
@@ -16,9 +17,14 @@ use Symfony\Component\Security\Core\User\UserInterface;
  *      "security"="is_granted('ROLE_ADMIN')",
  *      "security_message"="Only admin account can access to this."
  *      },
- *      collectionOperations={"get"},
+ *      collectionOperations={
+ *      "get"={
+ *              "normalization_context"={"groups"={"show_simple"}}
+ *          }
+ *      },
  *      itemOperations={
  *      "get"={
+ *           "normalization_context"={"groups"={"show_detail"}},
  *           "security"="is_granted('ROLE_USER') and object == user or is_granted('ROLE_ADMIN')",
  *            "security_message"="Only the account owner or an admin can access to this."
  *          }
@@ -32,16 +38,19 @@ class Client implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups("show_simple")
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
+     * @Groups("show_simple")
      */
     private $email;
 
     /**
      * @ORM\Column(type="json")
+     * @Groups("show_detail")
      */
     private $roles = [];
 
@@ -53,6 +62,7 @@ class Client implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * @ORM\OneToMany(targetEntity=User::class, mappedBy="client")
+     * @Groups("show_detail")
      */
     private $users;
 
