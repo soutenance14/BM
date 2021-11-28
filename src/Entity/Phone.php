@@ -18,7 +18,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *          },
  *      "post"={
  *              "security"="is_granted('ROLE_ADMIN')",
- *              "security_message"="Only admin account can create admin."
+ *              "security_message"="Only admin account can create a phone."
  *              }
  *          },
  *      itemOperations={
@@ -27,11 +27,11 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *          },
  *      "delete"={
  *              "security"="is_granted('ROLE_ADMIN')",
- *              "security_message"="Only admin account can delete admin."
+ *              "security_message"="Only admin account can delete a phone."
  *              },
  *      "put"={
  *              "security"="is_granted('ROLE_ADMIN')",
- *              "security_message"="Only admin account can edit admin."
+ *              "security_message"="Only admin account can edit a phone."
  *              }
  *          }
  * )
