@@ -11,7 +11,19 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ *      attributes= {
+ *      "security"="is_granted('ROLE_ADMIN')",
+ *      "security_message"="Only admin account can access to this."
+ *      },
+ *      collectionOperations={"get"},
+ *      itemOperations={
+ *      "get"={
+ *           "security"="is_granted('ROLE_USER') and object == user or is_granted('ROLE_ADMIN')",
+ *            "security_message"="Only the account owner or an admin can access to this."
+ *          }
+ *      }
+ * )
  * @ORM\Entity(repositoryClass=ClientRepository::class)
  */
 class Client implements UserInterface, PasswordAuthenticatedUserInterface
