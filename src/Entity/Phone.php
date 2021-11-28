@@ -5,17 +5,26 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\PhoneRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
+
+//POST for collectionsOperations is not a requested functions
 
 /**
  * @ApiResource(
  *      attributes= {"security"="is_granted('ROLE_USER')"},
- *      collectionOperations={"get",
+ *      collectionOperations={
+ *      "get"={
+ *              "normalization_context"={"groups"={"show_simple"}}
+ *          },
  *      "post"={
  *              "security"="is_granted('ROLE_ADMIN')",
  *              "security_message"="Only admin account can create admin."
  *              }
  *          },
- *      itemOperations={"get",
+ *      itemOperations={
+ *      "get"={
+ *              "normalization_context"={"groups"={"show_simple","show_detail"}}
+ *          },
  *      "delete"={
  *              "security"="is_granted('ROLE_ADMIN')",
  *              "security_message"="Only admin account can delete admin."
@@ -34,21 +43,25 @@ class Phone
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups("show_simple")
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("show_simple")
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("show_detail")
      */
     private $price;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("show_detail")
      */
     private $description;
 
