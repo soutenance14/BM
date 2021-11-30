@@ -15,24 +15,12 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *      collectionOperations={
  *      "get"={
  *              "normalization_context"={"groups"={"show_simple"}}
- *          },
- *      "post"={
- *              "security"="is_granted('ROLE_ADMIN')",
- *              "security_message"="Only admin account can create a phone."
- *              }
- *          },
+ *            }
+ *         },
  *      itemOperations={
  *      "get"={
  *              "normalization_context"={"groups"={"show_simple","show_detail"}}
- *          },
- *      "delete"={
- *              "security"="is_granted('ROLE_ADMIN')",
- *              "security_message"="Only admin account can delete a phone."
- *              },
- *      "put"={
- *              "security"="is_granted('ROLE_ADMIN')",
- *              "security_message"="Only admin account can edit a phone."
- *              }
+ *            }
  *          }
  * )
  * @ORM\Entity(repositoryClass=PhoneRepository::class)

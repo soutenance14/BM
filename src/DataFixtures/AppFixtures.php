@@ -33,9 +33,6 @@ class AppFixtures extends Fixture
         //CLIENT
         $clientA = $this->makeClient("ca@gmail.com", "password", ["ROLE_USER"]);
         $clientB = $this->makeClient("cb@gmail.com", "password", ["ROLE_USER"]);
-        //the admin is not necessary (not requested), but for testing some functions
-        //(adding phones...), the api can use it
-        $this->makeClient("admin@gmail.com", "password", ["ROLE_USER","ROLE_ADMIN"]);
         
         //USER
         $this->makeUser("Paul", "Verlaine", "paul@gmail.com", $clientA);
