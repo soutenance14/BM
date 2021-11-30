@@ -1,7 +1,0 @@
-POST https://127.0.0.1:8000/api/login
-
-{
-  "email":"a@gmail.com",
-  "username":"a@gmail.com",
-  "password":"password",
-}
