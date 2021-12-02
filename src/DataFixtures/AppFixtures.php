@@ -63,9 +63,9 @@ class AppFixtures extends Fixture
     private function makeUser($firstName, $lastName, $email, $client)
     {
         $user = new User();
-        $user->setFirstName("Paul");
-        $user->setLastName("Verlaine");
-        $user->setEmail("b@gmail.com");
+        $user->setFirstName($firstName);
+        $user->setLastName($lastName);
+        $user->setEmail($email);
         $user->setClient($client);
         $this->manager->persist($user);
     }
