@@ -1,4 +1,5 @@
 # BM Project 7 OC Symfony.
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/38aa2b329cc642a9b78a43426b15664a)](https://www.codacy.com/gh/soutenance14/BM/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=soutenance14/BM&amp;utm_campaign=Badge_Grade)
 API for manage phones for client with Symfony.
 ## Bundles
 * Api platform
