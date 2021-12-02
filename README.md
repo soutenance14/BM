@@ -38,3 +38,7 @@ DATABASE_URL="mysql://db_user:db_pass:@host:port/db_name?serverVersion=server_ve
 ## Documentation
 Use the server:port/api link for get the Documentation, exemple:
 http://127.0.0.1:80/api
+## Authentication
+Use your credentials at the authentication url
+http://127.0.0.1:80/api/login_check
+
