@@ -10,7 +10,10 @@ use Doctrine\ORM\Mapping as ORM;
  * @ApiResource(
  *     attributes= {"security"="is_granted('ROLE_USER')"},
  *     collectionOperations={
- *         "get","post"
+ *         "get"={
+ *              "security"="is_granted('ROLE_USER') and object.getClient() == user or is_granted('ROLE_ADMIN')"
+ *          },
+ *         "post"
  *      },
  *      itemOperations={
  *      "get"={
